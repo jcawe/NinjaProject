@@ -30,13 +30,16 @@ component InventoryConfiguration <<ScriptableObject>>
 component StoreConfiguration <<ScriptableObject>>
 component WeaponConfiguration <<ScriptableObject>>
 component HealthEffectConfiguration <<ScriptableObject>>
+component HealthConfiguration <<ScriptableObject>>
 
 Ninja --> InventoryBehaviour
 Ninja -left-> MoveBehaviour
 Ninja --> ControlBehaviour
+Ninja --> HealthConfiguration
 Enemy --> InventoryBehaviour
 Enemy -right-> MoveBehaviour
 Enemy --> AIBehaviour
+Enemy --> HealthConfiguration
 Weapon --> AttackBehaviour
 Weapon --> StorableBehaviour
 Potion --> StorableBehaviour
