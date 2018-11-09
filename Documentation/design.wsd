@@ -1,0 +1,52 @@
+@startuml
+
+skinparam component {
+    borderColor Black
+    backgroundColor<<GameObject>> LightGray
+    backgroundColor<<MonoBehaviour>> LightGreen
+    backgroundColor<<ScriptableObject>> Tomato
+    ArrowColor Black
+    Text Bold
+}
+
+component Ninja <<GameObject>>
+component Enemy <<GameObject>>
+component Weapon <<GameObject>>
+component Potion <<GameObject>>
+
+component MoveBehaviour <<MonoBehaviour>>
+component AttackBehaviour <<MonoBehaviour>>
+component ControlBehaviour <<MonoBehaviour>>
+component AIBehaviour <<MonoBehaviour>>
+component InventoryBehaviour <<MonoBehaviour>>
+component StorableBehaviour <<MonoBehaviour>>
+component HealthEffect <<MonoBehaviour>>
+
+component ControlConfiguration <<ScriptableObject>>
+component MoveConfiguration <<ScriptableObject>>
+component AIConfiguration <<ScriptableObject>>
+component InventoryConfiguration <<ScriptableObject>>
+component StoreConfiguration <<ScriptableObject>>
+component WeaponConfiguration <<ScriptableObject>>
+component HealthEffectConfiguration <<ScriptableObject>>
+
+Ninja --> InventoryBehaviour
+Ninja -left-> MoveBehaviour
+Ninja --> ControlBehaviour
+Enemy --> InventoryBehaviour
+Enemy -right-> MoveBehaviour
+Enemy --> AIBehaviour
+Weapon --> AttackBehaviour
+Weapon --> StorableBehaviour
+Potion --> StorableBehaviour
+Potion --> HealthEffect
+
+InventoryBehaviour --> InventoryConfiguration
+StorableBehaviour --> StoreConfiguration
+ControlBehaviour --> ControlConfiguration
+MoveBehaviour -up-> MoveConfiguration
+AIBehaviour --> AIConfiguration
+AttackBehaviour --> WeaponConfiguration
+HealthEffect --> HealthEffectConfiguration
+
+@enduml
