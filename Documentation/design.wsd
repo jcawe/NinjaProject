@@ -1,4 +1,4 @@
-@startuml
+@startuml design
 
 skinparam component {
     borderColor Black
@@ -20,7 +20,8 @@ component ControlBehaviour <<MonoBehaviour>>
 component AIBehaviour <<MonoBehaviour>>
 component InventoryBehaviour <<MonoBehaviour>>
 component StorableBehaviour <<MonoBehaviour>>
-component HealthEffect <<MonoBehaviour>>
+component HealthEffectBehaviour <<MonoBehaviour>>
+component ConsumableBehaviour <<MonoBehaviour>>
 
 component ControlConfiguration <<ScriptableObject>>
 component MoveConfiguration <<ScriptableObject>>
@@ -39,7 +40,8 @@ Enemy --> AIBehaviour
 Weapon --> AttackBehaviour
 Weapon --> StorableBehaviour
 Potion --> StorableBehaviour
-Potion --> HealthEffect
+Potion --> HealthEffectBehaviour
+Potion --> ConsumableBehaviour
 
 InventoryBehaviour --> InventoryConfiguration
 StorableBehaviour --> StoreConfiguration
@@ -47,6 +49,6 @@ ControlBehaviour --> ControlConfiguration
 MoveBehaviour -up-> MoveConfiguration
 AIBehaviour --> AIConfiguration
 AttackBehaviour --> WeaponConfiguration
-HealthEffect --> HealthEffectConfiguration
+HealthEffectBehaviour --> HealthEffectConfiguration
 
 @enduml
