@@ -22,6 +22,7 @@ component InventoryBehaviour <<MonoBehaviour>>
 component StorableBehaviour <<MonoBehaviour>>
 component HealthEffectBehaviour <<MonoBehaviour>>
 component ConsumableBehaviour <<MonoBehaviour>>
+component HealthBehaviour <<MonoBehaviour>>
 
 component ControlConfiguration <<ScriptableObject>>
 component MoveConfiguration <<ScriptableObject>>
@@ -35,11 +36,11 @@ component HealthConfiguration <<ScriptableObject>>
 Ninja --> InventoryBehaviour
 Ninja -left-> MoveBehaviour
 Ninja --> ControlBehaviour
-Ninja --> HealthConfiguration
+Ninja --> HealthBehaviour
 Enemy --> InventoryBehaviour
 Enemy -right-> MoveBehaviour
 Enemy --> AIBehaviour
-Enemy --> HealthConfiguration
+Enemy --> HealthBehaviour
 Weapon --> AttackBehaviour
 Weapon --> StorableBehaviour
 Potion --> StorableBehaviour
@@ -53,5 +54,6 @@ MoveBehaviour -up-> MoveConfiguration
 AIBehaviour --> AIConfiguration
 AttackBehaviour --> WeaponConfiguration
 HealthEffectBehaviour --> HealthEffectConfiguration
+HealthBehaviour --> HealthConfiguration
 
 @enduml
