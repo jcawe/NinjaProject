@@ -6,5 +6,5 @@ using UnityEngine;
 public class HealthConfiguration : ScriptableObject
 {
     public int MaxHealth;
-    public int Health;
+    public int InitialHealth;
 }
