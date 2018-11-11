@@ -24,7 +24,6 @@ component HealthEffectBehaviour <<MonoBehaviour>>
 component ConsumableBehaviour <<MonoBehaviour>>
 component HealthBehaviour <<MonoBehaviour>>
 
-component ControlConfiguration <<ScriptableObject>>
 component MoveConfiguration <<ScriptableObject>>
 component AIConfiguration <<ScriptableObject>>
 component InventoryConfiguration <<ScriptableObject>>
@@ -49,7 +48,6 @@ Potion --> ConsumableBehaviour
 
 InventoryBehaviour --> InventoryConfiguration
 StorableBehaviour --> StoreConfiguration
-ControlBehaviour --> ControlConfiguration
 MoveBehaviour -up-> MoveConfiguration
 AIBehaviour --> AIConfiguration
 AttackBehaviour --> WeaponConfiguration
