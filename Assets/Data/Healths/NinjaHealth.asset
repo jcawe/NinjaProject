@@ -14,4 +14,4 @@ MonoBehaviour:
   m_Name: NinjaHealth
   m_EditorClassIdentifier: 
   MaxHealth: 10
-  Health: 10
+  InitialHealth: 10
