@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0de6f1795261b48a4b204ebe716a4ad4, type: 3}
   m_Name: MoveNinja
   m_EditorClassIdentifier: 
-  Speed: 500
+  Speed: 1

@@ -2,13 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class MoveBehaviour : MonoBehaviour
 {
+    private Rigidbody RBody;
+
     public MoveConfiguration Move;
-    public Rigidbody RBody;
-    
+
+    void Start()
+    {
+        RBody = GetComponent<Rigidbody>();
+    }
+
     public void ApplyMove(float direction)
     {
-        RBody.AddForce(Vector3.forward * direction * Move.Speed);
+        RBody.velocity = transform.forward * Move.Speed * direction;
     }
 }
