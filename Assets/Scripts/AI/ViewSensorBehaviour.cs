@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [Serializable]
-public class DetectedEvent : UnityEvent<Transform> { }
+public class DetectedEvent : UnityEvent<GameObject> { }
 public class ViewSensorBehaviour : MonoBehaviour
 {
     public DetectedEvent OnDetected;
@@ -38,7 +38,7 @@ public class ViewSensorBehaviour : MonoBehaviour
                 if (!Physics.Raycast(transform.position, dirTarget, dist, ObstaclesMask))
                 {
                     targetsDetected.Add(target);
-                    OnDetected?.Invoke(target);
+                    OnDetected?.Invoke(target.gameObject);
                 }
             }
         }
