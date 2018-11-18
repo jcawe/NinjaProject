@@ -7,25 +7,27 @@ using UnityEngine.Events;
 [Serializable]
 public class AxisEvent : UnityEvent<float> { }
 
+[Serializable]
+public class ButtonEvent : UnityEvent<bool> { }
+
 public class ControlBehaviour : MonoBehaviour
 {
     public AxisEvent OnHorizontalAxis;
     public AxisEvent OnVerticalAxis;
-    public UnityEvent OnSubmit;
-    public UnityEvent OnCancel;
+    public ButtonEvent OnRun;
+    public ButtonEvent OnCancel;
 
     // Update is called once per frame
     void Update()
     {
         var x = Input.GetAxis("Horizontal");
         var y = Input.GetAxis("Vertical");
+        var run = Input.GetButton("Run");
+        var cancel = Input.GetButtonDown("Cancel");
 
-        if (x != 0) OnHorizontalAxis?.Invoke(x);
-
-        if (y != 0) OnVerticalAxis?.Invoke(y);
-
-        if (Input.GetButtonDown("Submit")) OnSubmit?.Invoke();
-
-        if (Input.GetButtonDown("Cancel")) OnCancel?.Invoke();
+        OnHorizontalAxis?.Invoke(x);
+        OnVerticalAxis?.Invoke(y);
+        OnRun?.Invoke(run);
+        OnCancel?.Invoke(cancel);
     }
 }
