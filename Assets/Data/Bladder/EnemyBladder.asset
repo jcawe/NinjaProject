@@ -14,4 +14,4 @@ MonoBehaviour:
   m_Name: EnemyBladder
   m_EditorClassIdentifier: 
   Speed: 1
-  Max: 15
+  Max: 10

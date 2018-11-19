@@ -10,10 +10,8 @@ public class BladderBehaviour : MonoBehaviour
     private float bladder;
     bool notified;
 
-    void OnEnable()
-    {
-        notified = false;
-    }
+    void OnEnable() => notified = false;
+
     // Update is called once per frame
     void Update()
     {
@@ -25,14 +23,12 @@ public class BladderBehaviour : MonoBehaviour
         {
             notified = true;
             OnBladderFilled?.Invoke();
-            Debug.Log("Bladder filled!");
         }
     }
 
     public void EmptyBladder()
     {
         bladder = 0f;
-        Debug.Log("Bladder empty!");
         notified = false;
     }
 

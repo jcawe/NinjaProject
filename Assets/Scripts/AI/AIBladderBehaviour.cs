@@ -26,7 +26,7 @@ public class AIBladderBehaviour : MonoBehaviour
         if(!haveToPeeing || peeing) return;
         
         var dist = Mathf.Abs((transform.position - peeSpot).magnitude);
-        if(dist < minWCDistance) StartCoroutine("Peeing");
+        if(dist < minWCDistance) StartCoroutine(Peeing());
     }
 
     public void GotoWC()

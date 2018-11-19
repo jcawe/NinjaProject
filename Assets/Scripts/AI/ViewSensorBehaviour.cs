@@ -22,6 +22,7 @@ public class ViewSensorBehaviour : MonoBehaviour
     {
         FindTargets();
     }
+    
     void FindTargets()
     {
         targetsDetected.Clear();
