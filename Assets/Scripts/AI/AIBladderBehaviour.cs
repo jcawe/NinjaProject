@@ -32,7 +32,6 @@ public class AIBladderBehaviour : MonoBehaviour
     public void GotoWC()
     {
         OnPeeingStart?.Invoke();
-        Debug.Log("Goin to WC");
         peeSpot = FindNearestPeeSpot();
         agent.SetDestination(peeSpot);
         haveToPeeing = true;
@@ -60,9 +59,7 @@ public class AIBladderBehaviour : MonoBehaviour
     IEnumerator Peeing()
     {
         peeing = true;
-        Debug.Log("Peeing...");
         yield return new WaitForSeconds(5f);
-        Debug.Log("Peeing finish");
         OnPeeingFinish?.Invoke();
         haveToPeeing = false;
         peeing = false;

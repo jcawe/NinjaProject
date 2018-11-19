@@ -6,7 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class MoveBehaviour : MonoBehaviour
 {
-    public MoveConfiguration MoveProfile;
+    public MoveConfiguration Profile;
     public string MoveParameter = "Forward";
     public string TurnParameter = "Turn";
     
@@ -35,7 +35,7 @@ public class MoveBehaviour : MonoBehaviour
     {
         var dir = new Vector3(hAxis, 0f, vAxis);
         var angle = Vector3.SignedAngle(transform.forward, dir, Vector3.up)/180f;
-        var speed = dir.magnitude * (run ? 1f : 0.5f);
+        var speed = dir.magnitude * Profile.Speed * (run ? 1f : 0.5f);
 
         anim.SetFloat(TurnParameter, angle * angleSpeed, .1f, Time.deltaTime);
         anim.SetFloat(MoveParameter, speed, .1f, Time.deltaTime);
