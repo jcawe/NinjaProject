@@ -1,16 +1,18 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+[Serializable]
+public class ConsumeEvent : UnityEvent<GameObject> { }
 public class ConsumableBehaviour : MonoBehaviour
 {
-    public UnityEvent OnConsume;
+    public ConsumeEvent OnConsume;
 
-    [ContextMenu("Consume")]
-    public void Consume()
+    public void Consume(GameObject who)
     {
-        OnConsume?.Invoke();
-        Destroy(gameObject, 0.5f);
+        OnConsume?.Invoke(who);
+        Destroy(gameObject);
     }
 }
