@@ -1,5 +1,22 @@
+@startuml (id=skin)
+skinparam component {
+    borderColor Black
+    backgroundColor<<GameObject>> LightGray
+    backgroundColor<<MonoBehaviour>> LightGreen
+    backgroundColor<<ScriptableObject>> Tomato
+    ArrowColor Black
+    ArrowFontColor Green
+    FontStyle Bold
+}
+skinparam interface {
+    FontStyle Bold
+    FontColor Blue
+    backgroundColor CornflowerBlue
+}
+@enduml
+
 @startuml (id=ninja)
-!includeurl https://raw.github.com/jcawe/ninjaproject/master/Documentation/skin.wsd!skin
+!include Documentation\%filename%!skin
 
 component Ninja <<GameObject>> {
     component MoveBehaviour <<MonoBehaviour>>
