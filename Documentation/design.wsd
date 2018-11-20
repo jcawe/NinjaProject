@@ -1,57 +1,92 @@
-@startuml design
+@startuml (id=ninja)
+!include Documentation\skin.wsd!skin
 
-skinparam component {
-    borderColor Black
-    backgroundColor<<GameObject>> LightGray
-    backgroundColor<<MonoBehaviour>> LightGreen
-    backgroundColor<<ScriptableObject>> Tomato
-    ArrowColor Black
-    Text Bold
+component Ninja <<GameObject>> {
+    component MoveBehaviour <<MonoBehaviour>>
+    component HealthBehaviour <<MonoBehaviour>>
+    component ControlBehaviour <<MonoBehaviour>>
+
+    ControlBehaviour -- OnHorizontalAxis
+    ControlBehaviour -- OnVerticalAxis
+    ControlBehaviour -- OnRun
+
+    OnHorizontalAxis )-- MoveBehaviour : Horizontal(axis)
+    OnVerticalAxis )-- MoveBehaviour : Vertical(axis)
+    OnRun )-- MoveBehaviour : Run(axis)
 }
 
-component Ninja <<GameObject>>
-component Enemy <<GameObject>>
-component Weapon <<GameObject>>
-component Potion <<GameObject>>
+component HealthProfile <<ScriptableObject>>
+component MoveProfile <<ScriptableObject>>
 
-component MoveBehaviour <<MonoBehaviour>>
-component AttackBehaviour <<MonoBehaviour>>
-component ControlBehaviour <<MonoBehaviour>>
-component AIBehaviour <<MonoBehaviour>>
+HealthBehaviour -- HealthProfile : <color:red><b>REQUIRES</b></color>
+MoveBehaviour -right- MoveProfile : <color:red><b>REQUIRES</b></color>
+@enduml
+
+@startuml (id=enemy)
+!include Documentation\skin.wsd!skin
+
+component Enemy <<GameObject>> {
+    component AIPatrolBehaviour <<MonoBehaviour>>
+    component AIBladderBehaviour <<MonoBehaviour>>
+    component AIPursuitBehaviour <<MonoBehaviour>>
+    component ViewSensorBehaviour <<MonoBehaviour>>
+    component BladderBehaviour <<MonoBehaviour>>
+    component HealthBehaviour <<MonoBehaviour>>
+
+    ViewSensorBehaviour -- OnDetected
+    AIPursuitBehaviour -- OnTargetLost
+    AIBladderBehaviour -up- OnPeeingStart
+    AIBladderBehaviour -up- OnPeeingFinish
+
+    OnPeeingStart )-up- AIPatrolBehaviour : enable = false
+    OnPeeingFinish )-up- AIPatrolBehaviour : enable = true
+    OnPeeingFinish )-up- BladderBehaviour : EmptyBladder()
+
+    OnDetected )-up- AIPursuitBehaviour : Spotted(target)
+    OnDetected )-- BladderBehaviour : enable = false
+    OnDetected )-- AIPatrolBehaviour : enable = false
+
+    OnTargetLost )-- AIPatrolBehaviour : enable = true
+    OnTargetLost )-- BladderBehaviour : enable = true
+}
+component BladderProfile <<ScriptableObject>>
+component HealthProfile <<ScriptableObject>>
+
+BladderBehaviour -- BladderProfile : <color:red><b>REQUIRES</b></color>
+HealthBehaviour -- HealthProfile : <color:red><b>REQUIRES</b></color>
+@enduml
+
+@startuml (id=spot)
+!include Documentation/skin.wsd!skin
+
+component ObjectLikeWC <<GameObject>> {
+    component PeeSpot <<MonoBehaviour>>
+}
+@enduml
+
+@startuml (id=others)
+
+!include Documentation/skin.wsd!skin
+
+component Weapon <<GameObject>>{
+    component AttackBehaviour <<MonoBehaviour>>
+    component StorableBehaviour <<MonoBehaviour>> as WStorable
+}
+component Potion <<GameObject>>{
+    component HealthEffectBehaviour <<MonoBehaviour>>
+    component ConsumableBehaviour <<MonoBehaviour>>
+    component StorableBehaviour <<MonoBehaviour>> as PStorable
+}
+
+component HealthEffectProfile <<ScriptableObject>>
+
+HealthEffectBehaviour -- HealthEffectProfile
+
 component InventoryBehaviour <<MonoBehaviour>>
-component StorableBehaviour <<MonoBehaviour>>
-component HealthEffectBehaviour <<MonoBehaviour>>
-component ConsumableBehaviour <<MonoBehaviour>>
-component HealthBehaviour <<MonoBehaviour>>
 
 component MoveConfiguration <<ScriptableObject>>
-component AIConfiguration <<ScriptableObject>>
 component InventoryConfiguration <<ScriptableObject>>
 component StoreConfiguration <<ScriptableObject>>
 component WeaponConfiguration <<ScriptableObject>>
-component HealthEffectConfiguration <<ScriptableObject>>
-component HealthConfiguration <<ScriptableObject>>
-
-Ninja --> InventoryBehaviour
-Ninja -left-> MoveBehaviour
-Ninja --> ControlBehaviour
-Ninja --> HealthBehaviour
-Enemy --> InventoryBehaviour
-Enemy -right-> MoveBehaviour
-Enemy --> AIBehaviour
-Enemy --> HealthBehaviour
-Weapon --> AttackBehaviour
-Weapon --> StorableBehaviour
-Potion --> StorableBehaviour
-Potion --> HealthEffectBehaviour
-Potion --> ConsumableBehaviour
-
-InventoryBehaviour --> InventoryConfiguration
-StorableBehaviour --> StoreConfiguration
-MoveBehaviour -up-> MoveConfiguration
-AIBehaviour --> AIConfiguration
-AttackBehaviour --> WeaponConfiguration
-HealthEffectBehaviour --> HealthEffectConfiguration
-HealthBehaviour --> HealthConfiguration
 
 @enduml
