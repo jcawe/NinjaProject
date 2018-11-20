@@ -52,7 +52,7 @@ component Enemy <<GameObject>> {
 component BladderProfile <<ScriptableObject>>
 component HealthProfile <<ScriptableObject>>
 
-BladderBehaviour -left- BladderProfile : <color:red><b>REQUIRES</b></color>
+BladderBehaviour -- BladderProfile : <color:red><b>REQUIRES</b></color>
 HealthBehaviour -right- HealthProfile : <color:red><b>REQUIRES</b></color>
 @enduml
 
