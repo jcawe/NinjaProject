@@ -1,5 +1,5 @@
 @startuml (id=ninja)
-!include Documentation\skin.wsd!skin
+!includeurl https://raw.github.com/jcawe/ninjaproject/master/Documentation/skin.wsd!skin
 
 component Ninja <<GameObject>> {
     component MoveBehaviour <<MonoBehaviour>>
