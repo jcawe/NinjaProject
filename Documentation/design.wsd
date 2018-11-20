@@ -18,7 +18,7 @@ component Ninja <<GameObject>> {
 component HealthProfile <<ScriptableObject>>
 component MoveProfile <<ScriptableObject>>
 
-HealthBehaviour -- HealthProfile : <color:red><b>REQUIRES</b></color>
+HealthBehaviour -right- HealthProfile : <color:red><b>REQUIRES</b></color>
 MoveBehaviour -right- MoveProfile : <color:red><b>REQUIRES</b></color>
 @enduml
 
@@ -52,8 +52,8 @@ component Enemy <<GameObject>> {
 component BladderProfile <<ScriptableObject>>
 component HealthProfile <<ScriptableObject>>
 
-BladderBehaviour -- BladderProfile : <color:red><b>REQUIRES</b></color>
-HealthBehaviour -- HealthProfile : <color:red><b>REQUIRES</b></color>
+BladderBehaviour -right- BladderProfile : <color:red><b>REQUIRES</b></color>
+HealthBehaviour -right- HealthProfile : <color:red><b>REQUIRES</b></color>
 @enduml
 
 @startuml (id=spot)
