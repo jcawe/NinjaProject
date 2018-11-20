@@ -16,7 +16,7 @@ skinparam interface {
 @enduml
 
 @startuml (id=ninja)
-!include Documentation\%filename%!skin
+!include %filename%!skin
 
 component Ninja <<GameObject>> {
     component MoveBehaviour <<MonoBehaviour>>
