@@ -1641,7 +1641,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5e9312db43e4dd1b0fbb44710c1106, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveProfile: {fileID: 0}
+  Profile: {fileID: 11400000, guid: ee3298ee18abb4bcabe6d12d9a00f46d, type: 2}
   MoveParameter: Forward
   TurnParameter: Turn
   angleSpeed: 10
@@ -2136,7 +2136,7 @@ PrefabInstance:
     - target: {fileID: 920655266810739547, guid: 570d63d6b17fa5647b05091e5280a5e3,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 570d63d6b17fa5647b05091e5280a5e3, type: 3}
@@ -2281,6 +2281,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7094804407108040736, guid: 71cbfc17d5c1b8f4c8f5373ad349ac0f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 71cbfc17d5c1b8f4c8f5373ad349ac0f, type: 3}
