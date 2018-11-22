@@ -34,10 +34,11 @@ public class MoveBehaviour : MonoBehaviour
     void FixedUpdate()
     {
         var dir = new Vector3(hAxis, 0f, vAxis);
-        var angle = Vector3.SignedAngle(transform.forward, dir, Vector3.up)/180f;
-        var speed = dir.magnitude * Profile.Speed * (run ? 1f : 0.5f);
-
-        anim.SetFloat(TurnParameter, angle * angleSpeed, .1f, Time.deltaTime);
+        var speed = dir.normalized.magnitude * Profile.Speed * (run ? 1f : 0.5f);
         anim.SetFloat(MoveParameter, speed, .1f, Time.deltaTime);
+
+        if (dir == Vector3.zero) return;
+        var target = Quaternion.LookRotation(dir, Vector3.up);
+        rb.MoveRotation(Quaternion.Lerp(rb.rotation, target, angleSpeed * Time.deltaTime));
     }
 }
