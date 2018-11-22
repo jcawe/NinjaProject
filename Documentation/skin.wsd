@@ -1,0 +1,16 @@
+@startuml (id=skin)
+skinparam component {
+    borderColor Black
+    backgroundColor<<GameObject>> LightGray
+    backgroundColor<<MonoBehaviour>> LightGreen
+    backgroundColor<<ScriptableObject>> Tomato
+    ArrowColor Black
+    ArrowFontColor Green
+    FontStyle Bold
+}
+skinparam interface {
+    FontStyle Bold
+    FontColor Blue
+    backgroundColor CornflowerBlue
+}
+@enduml

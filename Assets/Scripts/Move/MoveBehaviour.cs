@@ -9,7 +9,7 @@ public class MoveBehaviour : MonoBehaviour
     public MoveConfiguration Profile;
     public string MoveParameter = "Forward";
     public string TurnParameter = "Turn";
-    
+
     private Animator anim;
     private Rigidbody rb;
     private float hAxis;
@@ -24,7 +24,7 @@ public class MoveBehaviour : MonoBehaviour
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
     }
-    
+
     public void Run(bool run) => this.run = run;
     public void Sneak(bool sneak) => this.sneak = sneak;
 
@@ -38,6 +38,7 @@ public class MoveBehaviour : MonoBehaviour
         anim.SetFloat(MoveParameter, speed, .1f, Time.deltaTime);
 
         if (dir == Vector3.zero) return;
+        
         var target = Quaternion.LookRotation(dir, Vector3.up);
         rb.MoveRotation(Quaternion.Lerp(rb.rotation, target, angleSpeed * Time.deltaTime));
     }
