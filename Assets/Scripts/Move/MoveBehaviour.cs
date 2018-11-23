@@ -3,43 +3,39 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
-[RequireComponent(typeof(Rigidbody))]
 public class MoveBehaviour : MonoBehaviour
 {
     public MoveConfiguration Profile;
-    public string MoveParameter = "Forward";
-    public string TurnParameter = "Turn";
 
     private Animator anim;
-    private Rigidbody rb;
-    private float hAxis;
-    private float vAxis;
-    private bool run;
-    private bool sneak;
-
-    public float angleSpeed;
+    private bool isRunning;
 
     void Start()
     {
         anim = GetComponent<Animator>();
-        rb = GetComponent<Rigidbody>();
     }
 
-    public void Run(bool run) => this.run = run;
-    public void Sneak(bool sneak) => this.sneak = sneak;
-
-    public void Horizontal(float axis) => hAxis = axis;
-    public void Vertical(float axis) => vAxis = axis;
-
-    void FixedUpdate()
+    public void Run(bool run) => isRunning = run;
+    public void Move(Vector3 move)
     {
-        var dir = new Vector3(hAxis, 0f, vAxis);
-        var speed = dir.normalized.magnitude * Profile.Speed * (run ? 1f : 0.5f);
-        anim.SetFloat(MoveParameter, speed, .1f, Time.deltaTime);
+        move = transform.InverseTransformDirection(move.magnitude > 1 ? move.normalized : move);
 
-        if (dir == Vector3.zero) return;
-        
-        var target = Quaternion.LookRotation(dir, Vector3.up);
-        rb.MoveRotation(Quaternion.Lerp(rb.rotation, target, angleSpeed * Time.deltaTime));
+        var turn = Mathf.Atan2(move.x, move.z);
+        var speed = Mathf.Clamp(
+            move.z * Profile.MaxSpeed, 
+            0f, 
+            isRunning ? Profile.MaxSpeed : .5f
+        );
+
+        float turnSpeed = Mathf.Lerp(
+            Profile.StationaryTurnSpeed, 
+            Profile.MovementTurnSpeed, 
+            speed
+        );
+        transform.Rotate(0, turn * turnSpeed * Time.deltaTime, 0);
+
+
+        anim.SetFloat("Turn", turn, .1f, Time.deltaTime);
+        anim.SetFloat("Forward", speed, .1f, Time.deltaTime);
     }
 }

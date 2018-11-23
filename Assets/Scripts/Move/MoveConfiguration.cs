@@ -5,5 +5,12 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Move", menuName = "NinjaProject/Move")]
 public class MoveConfiguration : ScriptableObject
 {
-    public float Speed;
+    [Range(0f, 1f)]
+    public float MaxSpeed;
+
+    [Range(0f, 360f)]
+    public float StationaryTurnSpeed;
+
+    [Range(0f, 360f)]
+    public float MovementTurnSpeed;
 }

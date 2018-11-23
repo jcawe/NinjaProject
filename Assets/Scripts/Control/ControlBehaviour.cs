@@ -5,17 +5,15 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [Serializable]
-public class AxisEvent : UnityEvent<float> { }
+public class AxisEvent : UnityEvent<Vector3> { }
 
 [Serializable]
 public class ButtonEvent : UnityEvent<bool> { }
 
 public class ControlBehaviour : MonoBehaviour
 {
-    public AxisEvent OnHorizontalAxis;
-    public AxisEvent OnVerticalAxis;
+    public AxisEvent OnAxis;
     public ButtonEvent OnRun;
-    public ButtonEvent OnCancel;
 
     // Update is called once per frame
     void Update()
@@ -23,11 +21,8 @@ public class ControlBehaviour : MonoBehaviour
         var x = Input.GetAxis("Horizontal");
         var y = Input.GetAxis("Vertical");
         var run = Input.GetButton("Run");
-        var cancel = Input.GetButtonDown("Cancel");
 
-        OnHorizontalAxis?.Invoke(x);
-        OnVerticalAxis?.Invoke(y);
         OnRun?.Invoke(run);
-        OnCancel?.Invoke(cancel);
+        OnAxis?.Invoke(new Vector3(x, 0, y));
     }
 }

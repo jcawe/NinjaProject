@@ -11,8 +11,8 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: 0de6f1795261b48a4b204ebe716a4ad4, type: 3}
-  m_Name: MoveNinja
+  m_Name: MoveGuard
   m_EditorClassIdentifier: 
-  MaxSpeed: 1
+  MaxSpeed: 0.75
   StationaryTurnSpeed: 180
   MovementTurnSpeed: 360
